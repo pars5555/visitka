@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteBase /
+
+RewriteRule ^admin/login/?$  /dyn/admin/main/$1/?page=login [L,QSA]
+RewriteRule ^admin/?$  /dyn/admin/main/$1/?page=home [L,QSA]
+
+RewriteRule ^login$  /dyn/main/main/$1/?page=login [L,QSA]
+
+RewriteRule ^/?$ /dyn/main/main [L,QSA] 
+RewriteRule ^dyn(/.+)?/?$ /index1.php?_url=$1 [L,QSA]

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<builders>
+    <builder>
+        <debug>true</debug>
+        <generate_doc package="">false</generate_doc>
+        <output>
+            <file>out/ngs.js</file>
+            <compress>true</compress>
+        </output>
+        <input>
+            <files>
+                <file>ngs/LoadFactory.class.js</file>
+                <file>ngs/ActionFactory.class.js</file>
+                <file>Main.class.js</file>
+            </files>
+        </input >
+    </builder> 
+    <!-- manager Part -->
+    <builder>
+        <debug>true</debug>
+        <generate_doc package="managers">false</generate_doc>
+        <output>
+            <file>out/ngs_manager.js</file>
+            <compress>true</compress>
+        </output>
+        <input>
+            <files>
+                <file>ngs/managers/LoadManager.class.js</file>
+                <file>ngs/managers/DialogsManager.class.js</file>
+            </files>
+        </input >
+    </builder>
+    <builder>
+        <debug>true</debug>
+        <generate_doc package="util">false</generate_doc>
+        <output>
+            <file>out/ngs_util.js</file>
+            <compress>true</compress>
+        </output>
+        <input>
+            <files>
+                <file doc="true">ngs/util/AjaxLoader.class.js</file>
+                <file>ngs/util/DeepnessArranger.js</file>
+                <file>ngs/util/Navigator.class.js</file>
+                <file>ngs/util/UrlObserver.class.js</file>
+                <file>ngs/util/UrlFormater.class.js</file>
+                <file>ngs/util/crc32.js</file>
+                <file>ngs/util/UrlChangeEventObserver.class.js</file>
+            </files>
+        </input >
+    </builder>
+    <builder>
+        <debug>true</debug>
+        <generate_doc package="loads">false</generate_doc>
+        <output>
+            <file>out/ngs_loads.js</file>
+            <compress>true</compress>
+        </output>
+        <input>
+            <files>
+                <file doc="true">ngs/loads/AbstractLoad.class.js</file>
+                <file>ngs/loads/main/MainLoad.class.js</file>
+                				
+                <file>ngs/loads/admin/AdminMainLoad.class.js</file>
+                <file>ngs/loads/admin/AdminHomeLoad.class.js</file>
+            
+               
+                
+            </files>
+        </input>
+    </builder>
+    <builder>
+        <debug>true</debug>
+        <generate_doc package="action">false</generate_doc>
+        <output>
+            <file>out/ngs_actions.js</file>
+            <compress>true</compress>
+        </output>
+        <input>
+            <files>
+                <file doc="true">ngs/actions/AbstractAction.class.js</file>
+             
+            </files>
+        </input>
+    </builder>
+</builders>

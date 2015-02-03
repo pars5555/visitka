@@ -1,0 +1,61 @@
+/*======= Blue Button =======*/
+.blue{
+	background-color: #3498DB;
+	border:1px solid #258CD1;
+	color:#fff;	
+	border-radius:3px;
+	transition:all 0.3s ease;
+}
+
+.blue:hover{
+	background-color: #258CD1;
+	box-shadow: 0 0 5px #258CD1;
+}
+
+/*======= Grey Button =======*/
+
+.grey{
+	background-color: #777;
+	border:1px solid #555;
+	color:#fff;	
+	border-radius:3px;
+	transition:all 0.3s ease;
+}
+
+.grey:hover{
+	background-color: #555;
+	box-shadow: 0 0 5px #555;
+}
+
+/*======= Green Button =======*/
+
+.green{
+	background-color: #7FBA00;
+	border:1px solid #559002;
+	color:#fff;	
+	border-radius:3px;
+	transition:all 0.3s ease;
+}
+
+.green:hover{
+	background-color: #559002;
+	box-shadow: 0 0 5px #559002;
+}
+/* Red text */
+.text_red{
+	color:#cc0000;
+}
+/* Blue text */
+.text_blue{
+	color:#3498DB;
+}
+/* Green text */
+.text_green{
+	color:#508B01;
+}
+.bold{
+	font-weight:600;
+}
+.text-center{
+	text-align:center;
+}
