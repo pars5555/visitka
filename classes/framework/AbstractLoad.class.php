@@ -18,14 +18,14 @@ abstract class AbstractLoad extends AbstractRequest{
 	protected $nameSpace = null;
 	
   /**
-   * Return a thing based on $smarty, $sessionManager, $config, $loadMapper, $args parameters
+   * Return a thing based on $smarty, $sessionManager,  $loadMapper, $args parameters
    * @abstract  
    * @access
-   * @param $smarty, $sessionManager, $config, $loadMapper, $args
+   * @param $smarty, $sessionManager, $loadMapper, $args
    * @return
   */
-	public function initialize($sessionManager, $config, $loadMapper, $args){
-		parent::initialize($sessionManager, $config, $loadMapper, $args);
+	public function initialize($sessionManager, $loadMapper, $args){
+		parent::initialize($sessionManager, $loadMapper, $args);
 		$this->params = array();
 	}
 	
@@ -81,7 +81,7 @@ abstract class AbstractLoad extends AbstractRequest{
 			if(isset($loadArr["args"])){
 				$args = array_merge($this->args, $loadArr["args"]);
 			}
-			$loadObj->initialize($this->sessionManager, $this->config, $this->loadMapper, $args);
+			$loadObj->initialize($this->sessionManager, $this->loadMapper, $args);
 			$loadObj->setDispatcher($this->dispatcher);
 			$loadObj->setWrapperLoad($this, $namespace);
 			$allowLoad = false;
@@ -302,7 +302,7 @@ abstract class AbstractLoad extends AbstractRequest{
 	}
 	
 	public function getTemplator(){
-		return new SmartyTemplator($this, $this->loadMapper, $this->config);
+		return new SmartyTemplator($this, $this->loadMapper);
 	}
         
         protected function getJsonInput(){

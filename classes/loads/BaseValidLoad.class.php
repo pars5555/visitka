@@ -15,14 +15,16 @@ require_once (CLASSES_PATH . "/managers/CmsSettingsManager.class.php");
  */
 abstract class BaseValidLoad extends AbstractLoad {
 
-    public function initialize($sessionManager, $config, $loadMapper, $args) {
-        parent::initialize($sessionManager, $config, $loadMapper, $args);
-        $lm = LanguageManager::getInstance($this->config, $this->args);
+    public function initialize($sessionManager, $loadMapper, $args) {
+        parent::initialize($sessionManager, $loadMapper, $args);
+        $lm = LanguageManager::getInstance();
         $this->addParam("lm", $lm);
-        $allVarsArray = CmsSettingsManager::getInstance()->getAllVarsArray();
-        $this->addParam("cms_vars", json_encode($allVarsArray));
         $userLevel = $this->getUserLevel();
+        $customer = $this->getCustomer();
+        $this->addParam('DOCUMENT_ROOT', DOCUMENT_ROOT);
+        $this->addParam('customer', $customer);
         $this->addParam('userLevel', $userLevel);
+        $this->addParam('userId', $this->getUserId());
         $this->addParam('userGroupsUser', UserGroups::$USER);
         $this->addParam('userGroupsGuest', UserGroups::$GUEST);
         $this->addParam('userGroupsAdmin', UserGroups::$ADMIN);
@@ -36,16 +38,16 @@ abstract class BaseValidLoad extends AbstractLoad {
 
     protected function initErrorMessages() {
         if (!empty($_SESSION['error_message'])) {
-            $reror_message = $this->secure($_SESSION['error_message']);
-            $this->addParam('error_message', $reror_message);
+            $message = $this->secure($_SESSION['error_message']);
+            $this->addParam('error_message', $message);
             unset($_SESSION['error_message']);
         }
     }
 
     protected function initSucessMessages() {
         if (!empty($_SESSION['success_message'])) {
-            $reror_message = $this->secure($_SESSION['success_message']);
-            $this->addParam('success_message', $reror_message);
+            $message = $this->secure($_SESSION['success_message']);
+            $this->addParam('success_message', $message);
             unset($_SESSION['success_message']);
         }
     }

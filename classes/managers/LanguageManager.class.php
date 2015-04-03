@@ -1,6 +1,6 @@
 <?php
 
-require_once (CLASSES_PATH . "/framework/AbstractManager.class.php");
+require_once (FRAMEWORK_PATH . "/AbstractManager.class.php");
 require_once (CLASSES_PATH . "/dal/mappers/LanguageMapper.class.php");
 
 /**
@@ -17,7 +17,7 @@ class LanguageManager extends AbstractManager {
     private $allPhrasesDtosMappedById;
     private $allPhrasesDtosMappedByPhraseEn;
 
-    
+  
     /**
      * @var singleton instance of class
      */
@@ -25,21 +25,18 @@ class LanguageManager extends AbstractManager {
 
     /**
      * Initializes DB mappers
-     *
-     * @param object $config
-     * @param object $args
-     * @return
+   
      */
     function __construct() {
-        $this->mapper = LanguageMapper::getInstance();        
+        $this->mapper = LanguageMapper::getInstance();
+
+
         $this->initAllPhrases();
     }
 
     /**
      * Returns an singleton instance of this class
-     *
-     * @param object $config
-     * @param object $args
+    
      * @return
      */
     public static function getInstance() {
@@ -49,7 +46,6 @@ class LanguageManager extends AbstractManager {
         }
         return self::$instance;
     }
-
 
     public function getPhrase($phraseFormula, $lang_code = null, $transform = 0) {
 
@@ -69,16 +65,19 @@ class LanguageManager extends AbstractManager {
                 $pid = $this->getPhraseFormulaFirstPhraseId($ret);
             }
         } else {
-            $ret = $this->allPhrases[$phraseFormula][$lc];
+            if (array_key_exists($phraseFormula, $this->allPhrases)) {
+                $ret = $this->allPhrases[$phraseFormula][$lc];
+            } else {
+                $ret = null;
+            }
         }
         switch ($transform) {
             case 1:
-                return mb_strtolower($ret);
+                return isset($ret)?mb_strtolower($ret):null;
             case 2:
-                return mb_strtoupper($ret);
+                return isset($ret)?mb_strtoupper($ret):null;
             case 3:
-                return $this->mb_ucfirst($ret);
-                break;
+                return isset($ret)?$this->mb_ucfirst($ret):null;
             default:
                 return $ret;
         }
@@ -143,6 +142,10 @@ class LanguageManager extends AbstractManager {
     public function getPhraseIdByPhraseEn($phraseEn) {
         if (array_key_exists($phraseEn, $this->allPhrasesDtosMappedByPhraseEn)) {
             $dto = $this->allPhrasesDtosMappedByPhraseEn[$phraseEn];
+            return $dto->getId();
+        }
+        if (array_key_exists(ucfirst($phraseEn), $this->allPhrasesDtosMappedByPhraseEn)) {
+            $dto = $this->allPhrasesDtosMappedByPhraseEn[ucfirst($phraseEn)];
             return $dto->getId();
         }
         return null;

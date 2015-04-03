@@ -14,7 +14,6 @@ require_once(CLASSES_PATH . "/managers/CmsSettingsManager.class.php");
  */
 abstract class AbstractRequest {
 
-    protected $config;
     protected $customer;
     protected $args;
     protected $sessionManager;
@@ -22,16 +21,15 @@ abstract class AbstractRequest {
     protected $requestGroup;
 
     /**
-     * Return a thing based on $sessionManager, $config, $loadMapper, $args parameters
+     * Return a thing based on $sessionManager, $loadMapper, $args parameters
      * @abstract  
      * @access
-     * @param $sessionManager, $config, $loadMapper, $args
+     * @param $sessionManager,  $loadMapper, $args
      * @return
      */
-    public function initialize($sessionManager, $config, $loadMapper, $args) {
+    public function initialize($sessionManager, $loadMapper, $args) {
         $this->sessionManager = $sessionManager;
         $this->loadMapper = $loadMapper;
-        $this->config = $config;
         $this->args = $args;
     }
 
@@ -124,13 +122,13 @@ abstract class AbstractRequest {
     }
 
     /**
-     * Return a thing based on $config parameter
+
      * @abstract  
      * @access
-     * @param $config 
+
      * @return
      */
-    public static function notFoundHandler($config) {
+    public static function notFoundHandler() {
         header("HTTP/1.0 404 Not Found");
     }
 

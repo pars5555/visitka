@@ -5,7 +5,7 @@
         <generate_doc package="">false</generate_doc>
         <output>
             <file>out/ngs.js</file>
-            <compress>true</compress>
+            <compress>false</compress>
         </output>
         <input>
             <files>
@@ -21,7 +21,7 @@
         <generate_doc package="managers">false</generate_doc>
         <output>
             <file>out/ngs_manager.js</file>
-            <compress>true</compress>
+            <compress>false</compress>
         </output>
         <input>
             <files>
@@ -35,7 +35,7 @@
         <generate_doc package="util">false</generate_doc>
         <output>
             <file>out/ngs_util.js</file>
-            <compress>true</compress>
+            <compress>false</compress>
         </output>
         <input>
             <files>
@@ -54,7 +54,7 @@
         <generate_doc package="loads">false</generate_doc>
         <output>
             <file>out/ngs_loads.js</file>
-            <compress>true</compress>
+            <compress>false</compress>
         </output>
         <input>
             <files>
@@ -74,7 +74,7 @@
         <generate_doc package="action">false</generate_doc>
         <output>
             <file>out/ngs_actions.js</file>
-            <compress>true</compress>
+            <compress>false</compress>
         </output>
         <input>
             <files>

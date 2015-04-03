@@ -11,14 +11,14 @@ require_once(CLASSES_PATH . "/framework/AbstractLoad.class.php");
  * @package framework
  */
 abstract class AbstractTemplator {
-	protected $config;
+	
 	protected $loadMapper;
     protected $load;
 	
-	public function __construct(AbstractLoad $load, AbstractLoadMapper $loadMapper, $config) {
+	public function __construct(AbstractLoad $load, AbstractLoadMapper $loadMapper) {
 		$this->load = $load;
 		$this->loadMapper = $loadMapper;
-		$this->config = $config;
+		
 	}
 
 	public abstract function displayResult();

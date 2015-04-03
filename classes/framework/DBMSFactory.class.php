@@ -7,7 +7,7 @@ require_once(CLASSES_PATH . "/util/db/ImprovedDBMS.class.php");
  */
 class DBMSFactory {
 
-    private static $config;
+  
     private static $dbmsInstance = null;
 
     /**
@@ -19,13 +19,11 @@ class DBMSFactory {
 
     /**
      * Should be called before getDBMS() function to initialize 
-     * $config property.
-     * 
-     * @param object $config
-     * @return 
+       * 
+         * @return 
      */
-    public static function init($config) {
-        self::$config = $config;
+    public static function init() {
+        
     }
 
     /**
@@ -35,9 +33,7 @@ class DBMSFactory {
      */
     public static function getDBMS() {
         if (is_null(self::$dbmsInstance)) {
-            if (defined("DBMS")) {
-                self::$dbmsInstance = self::newClass(DBMS, self::$config);
-            }
+            self::$dbmsInstance = self::newClass(DBMS);
         }
         return self::$dbmsInstance;
     }

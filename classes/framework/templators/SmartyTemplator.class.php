@@ -16,9 +16,9 @@ class SmartyTemplator extends AbstractTemplator{
 
 	protected $smarty;
 
-	public function __construct(AbstractLoad $load, AbstractLoadMapper $loadMapper, $config) {
-		parent::__construct($load, $loadMapper, $config);
-		$this -> smarty = new NgsSmarty($this -> config["VERSION"]);
+	public function __construct(AbstractLoad $load, AbstractLoadMapper $loadMapper) {
+		parent::__construct($load, $loadMapper);
+		$this -> smarty = new NgsSmarty(VERSION);
 	}
 
 	public function displayResult() {

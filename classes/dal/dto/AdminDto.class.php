@@ -1,6 +1,6 @@
 <?php
 
-require_once (CLASSES_PATH . "/framework/dal/dto/AbstractDto.class.php");
+require_once (FRAMEWORK_PATH . "/dal/dto/AbstractDto.class.php");
 
 /**
  * AdminDto class is extended class from AbstractDto.

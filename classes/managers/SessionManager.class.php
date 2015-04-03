@@ -20,15 +20,14 @@ require_once (CLASSES_PATH . "/security/users/CustomerUser.class.php");
 class SessionManager extends AbstractSessionManager {
 
     private $user = null;
-    private $config;
+   
 
-    public function __construct($config) {
+    public function __construct() {
         session_set_cookie_params(3600000);
         session_start();
-        $this->config = $config;
     }
 
-    public function getUser() {
+    public function getUser() {        
         if ($this->user != null) {
             return $this->user;
         }
@@ -57,20 +56,14 @@ class SessionManager extends AbstractSessionManager {
         return $this->user;
     }
 
-    /**
-     * Return a thing based on $request, $user parameters
-     * @abstract
-     * @access
-     * @param $request, $user
-     * @return true
-     */
     public function validateRequest($request, $user) {
+        if ($user->getLevel() == UserGroups::$ADMIN) {
+            return true;
+        }
         if ($request->getRequestGroup() == RequestGroups::$guestRequest) {
             return true;
         }
-        if ($request->getRequestGroup() == RequestGroups::$adminRequest && $user->getLevel() == UserGroups::$ADMIN) {
-            return true;
-        }
+
         if ($request->getRequestGroup() == RequestGroups::$userRequest && $user->getLevel() == UserGroups::$USER) {
             return true;
         }
@@ -78,6 +71,10 @@ class SessionManager extends AbstractSessionManager {
         return false;
     }
 
+    private function updateUserHash($uId) {
+        $userManager = UserManager::getInstance();
+        return $userManager->updateUserHash($uId);
+    }
 }
 
 ?>

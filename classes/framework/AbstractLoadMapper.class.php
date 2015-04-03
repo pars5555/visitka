@@ -8,19 +8,18 @@
 */
 abstract class  AbstractLoadMapper{
 
-	private $params;
-	protected $config;
+	private $params;	
 	protected $smarty;
 	
   /**
-   * Return a thing based on $config parameter
+   * Return 
    * @abstract  
    * @access
-   * @param $config 
+ 
    * @return 
   */
-	public function __construct($config){
-		$this->config = $config;
+	public function __construct(){
+		
 	}
 	
   /**

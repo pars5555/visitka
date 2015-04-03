@@ -1,6 +1,6 @@
 <?php
 
-require_once (CLASSES_PATH . "/framework/dal/dto/AbstractDto.class.php");
+require_once (FRAMEWORK_PATH . "/dal/dto/AbstractDto.class.php");
 
 /**
  * AdminDto class is extended class from AbstractDto.
@@ -9,18 +9,18 @@ require_once (CLASSES_PATH . "/framework/dal/dto/AbstractDto.class.php");
  */
 class LanguageDto extends AbstractDto {
 
-	// Map of DB value to Field value
-	protected $mapArray = array("id" => "id", "phrase_en" => "phraseEn", "phrase_am" => "phraseAm", "phrase_ru" => "phraseRu");
+    // Map of DB value to Field value
+    protected $mapArray = array("id" => "id", "phrase_en" => "phraseEn", "phrase_am" => "phraseAm", "phrase_ru" => "phraseRu");
 
-	// constructs class instance
-	public function __construct() {
-		
-	}
+    // constructs class instance
+    public function __construct() {
+        
+    }
 
-	// returns map array
-	public function getMapArray() {
-		return $this->mapArray;
-	}
+    // returns map array
+    public function getMapArray() {
+        return $this->mapArray;
+    }
 
 }
 

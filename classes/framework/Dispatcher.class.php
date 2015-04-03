@@ -31,7 +31,7 @@ if (defined("SESSION_MANAGER")) {
  */
 class Dispatcher {
 
-    protected $config;
+  
     protected $toCache = false;
     public $loadsPackage;
     private $isAjax = false;
@@ -43,20 +43,17 @@ class Dispatcher {
      * 
      */
     public function __construct() {
-        //initilize config file
-        if (defined("CONFIG_INI")) {
-            $this->config = parse_ini_file(CONFIG_INI);
-        }
+        
         //initilize db connection		
-        DBMSFactory::init($this->config);
+        DBMSFactory::init();
 
         //initilize load mapper	
         if (defined("LOAD_MAPPER")) {
-            $this->loadMapper = $this->newClass(LOAD_MAPPER, $this->config);
+            $this->loadMapper = $this->newClass(LOAD_MAPPER);
         }
 
         if (defined("SESSION_MANAGER")) {
-            $this->sessionManager = $this->newClass(SESSION_MANAGER, $this->config);
+            $this->sessionManager = $this->newClass(SESSION_MANAGER);
         }
 
         $this->actionPackage = ACTIONS_DIR;
@@ -98,7 +95,6 @@ class Dispatcher {
         //--replacing separarators for getting real package's path
         //$this->sessionManager->setArgs($args);
         //	$this->sessionManager->setDispatcher($this);
-
         $this->dispatch($package, $command, $args);
     }
 
@@ -216,7 +212,7 @@ class Dispatcher {
                     $this->args = array_merge($this->args, $args);
                 }
                 //$this->sessionManager->unsetArgs($this->args);
-                $loadObj->initialize($this->sessionManager, $this->config, $this->loadMapper, $this->args);
+                $loadObj->initialize($this->sessionManager, $this->loadMapper, $this->args);
                 $loadObj->setDispatcher($this);
 
                 if ($this->validateRequest($loadObj)) {
@@ -267,7 +263,7 @@ class Dispatcher {
             if (file_exists($actionFileName)) {
                 require_once($actionFileName);
                 $actionObj = new $actionName();
-                $actionObj->initialize($this->sessionManager, $this->config, $this->loadMapper, $this->args);
+                $actionObj->initialize($this->sessionManager, $this->loadMapper, $this->args);
                 $actionObj->setDispatcher($this);
                 if ($this->validateRequest($actionObj)) {
                     $this->toCache = $actionObj->toCache();

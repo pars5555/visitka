@@ -5,7 +5,7 @@ class NgsSmarty extends Smarty{
 
 /**
 * constructor
-* reading Smarty config and setting up smarty environment accordingly
+* reading Smarty setting up smarty environment accordingly
 */
 
 	public function __construct($version = 0){

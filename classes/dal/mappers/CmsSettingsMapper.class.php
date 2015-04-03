@@ -1,6 +1,6 @@
 <?php
 
-require_once (CLASSES_PATH . "/framework/dal/mappers/AbstractMapper.class.php");
+require_once (FRAMEWORK_PATH . "/dal/mappers/AbstractMapper.class.php");
 require_once (CLASSES_PATH . "/dal/dto/CmsSettingsDto.class.php");
 
 /**

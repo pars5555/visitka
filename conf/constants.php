@@ -54,11 +54,35 @@ define("BIN_DIR", NGS_ROOT . "/bin");
 define("IMG_ROOT_DIR", NGS_ROOT . "/htdocs/img");
 define("CSS_ROOT_DIR", NGS_ROOT . "/htdocs/css");
 
-define("DBMS", CLASSES_PATH."/util/db/ImprovedDBMS.class.php");
-define("CONFIG_INI", CONF_PATH . "/config.ini");
+define("DBMS", CLASSES_PATH . "/util/db/ImprovedDBMS.class.php");
+if (!isset($_SERVER['environment'])) {
+    $_SERVER['environment'] = "local";
+}
+define("ENVIRONMENT", $_SERVER['environment']); 
+switch (ENVIRONMENT) {
+    case 'development':
+        define('DB_HOST', '127.0.0.1');
+        define('DB_USER', 'pcstore');
+        define('DB_PASS', 'pcstore123');
+        define('DB_NAME', 'pcstore_dev');
+        break;
+    case 'production':
+        define('DB_HOST', '127.0.0.1');
+        define('DB_USER', 'pcstore');
+        define('DB_PASS', 'pcstore123');
+        define('DB_NAME', 'pcstore');
+        break;
+    case 'local':
+        define('DB_HOST', '127.0.0.1');
+        define('DB_USER', 'root');
+        define('DB_PASS', '');
+        define('DB_NAME', 'pcstore');
+        break;
+}
 
-define("LOAD_MAPPER", CLASSES_PATH."/loads/LoadMapper.class.php");
-define("SESSION_MANAGER", CLASSES_PATH."/managers/SessionManager.class.php");
+define("VERSION", "2.0");
+define("LOAD_MAPPER", CLASSES_PATH . "/loads/LoadMapper.class.php");
+define("SESSION_MANAGER", CLASSES_PATH . "/managers/SessionManager.class.php");
 
 //defining load and action directories
 define("LOADS_DIR", "loads");

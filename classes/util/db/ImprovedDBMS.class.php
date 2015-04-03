@@ -17,8 +17,8 @@ class ImprovedDBMS {
 	/**
 	 * Tries to connect to a MySQL Server 
 	 */
-	public function __construct($config) {
-		$this->link = mysqli_connect($config['DB_host'], $config['DB_user'], $config['DB_pass'], $config['DB_name']);
+	public function __construct() {
+		$this->link = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 		mysqli_set_charset ($this->link,  "utf8" );
 		if (!$this->link) {
 		    printf("Connect failed: %s\n", mysqli_connect_error());

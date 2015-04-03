@@ -15,8 +15,8 @@ class JsonTemplator extends AbstractTemplator{
 
 	protected $smarty;
 
-	public function __construct(AbstractLoad $load, AbstractLoadMapper $loadMapper, $config) {
-		parent::__construct($load, $loadMapper, $config);
+	public function __construct(AbstractLoad $load, AbstractLoadMapper $loadMapper) {
+		parent::__construct($load, $loadMapper);
 	}
 
 	public function displayResult() {
