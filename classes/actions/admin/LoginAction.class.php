@@ -11,9 +11,9 @@ class LoginAction extends AbstractAction {
     public function service() {
         $username = $this->secure($_REQUEST['username']);
         $password = $this->secure($_REQUEST['password']);
-
-        $adminsManager = AdminsManager::getInstance($this->config, $this->args);
+        $adminsManager = AdminsManager::getInstance();
         $adminDto = $adminsManager->getByLoginPassword($username, $password);
+       
         if ($adminDto) {
             $adminUser = new AdminUser($adminDto->getId());
             $adminUser->setUniqueId($adminDto->getHash());

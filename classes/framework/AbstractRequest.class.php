@@ -1,6 +1,7 @@
 <?php
 
 require_once(FRAMEWORK_PATH . "/AbstractSessionManager.class.php");
+require_once(CLASSES_PATH . "/managers/AdminsManager.class.php");
 require_once(CLASSES_PATH . "/managers/LanguageManager.class.php");
 require_once(CLASSES_PATH . "/managers/CmsSettingsManager.class.php");
 
@@ -159,15 +160,9 @@ abstract class AbstractRequest {
         if (!$this->customer) {
             if ($this->getUserLevel() != UserGroups::$GUEST) {
                 $userId = $this->getUserId();
-                if ($this->getUserLevel() == UserGroups::$COMPANY) {
-                    $companyManager = CompanyManager::getInstance();
-                    $this->customer = $companyManager->selectByPK($userId);
-                } else if ($this->getUserLevel() == UserGroups::$SERVICE_COMPANY) {
-                    $serviceCompanyManager = ServiceCompanyManager::getInstance();
-                    $this->customer = $serviceCompanyManager->selectByPK($userId);
-                } else if ($this->getUserLevel() == UserGroups::$ADMIN) {
-                    $adminManager = AdminManager::getInstance();
-                    $this->customer = $adminManager->selectByPK($userId);
+                if ($this->getUserLevel() == UserGroups::$ADMIN) {
+                    $adminsManager = AdminsManager::getInstance();
+                    $this->customer = $adminsManager->selectByPK($userId);
                 } else if ($this->getUserLevel() == UserGroups::$USER) {
                     $userManager = UserManager::getInstance();
                     $this->customer = $userManager->selectByPK($userId);
